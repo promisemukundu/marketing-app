@@ -3,22 +3,22 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { HeaderComponent } from './header/header.component';
-import { NavbarComponent } from './navbar/navbar.component';
-import { FooterComponent } from './footer/footer.component';
-import { CopyrightComponent } from './copyright/copyright.component';
+import { HeaderComponent } from './shared/header/header.component';
+import { NavbarComponent } from './shared/navbar/navbar.component';
+import { CopyrightComponent } from './shared/copyright/copyright.component';
+import { FooterComponent } from './shared/footer/footer.component';
 
 @NgModule({
   declarations: [
-    AppComponent,
-    HeaderComponent,
-    NavbarComponent,
-    FooterComponent,
-    CopyrightComponent
+    AppComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HeaderComponent,
+    NavbarComponent,
+    CopyrightComponent,
+    FooterComponent
   ],
   providers: [],
   bootstrap: [AppComponent]
