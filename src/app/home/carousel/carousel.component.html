@@ -1,8 +1,9 @@
 <div class="container-fluid px-0 mb-5">
   <div id="header-carousel" class="carousel slide carousel-fade" data-bs-ride="carousel">
     <div class="carousel-inner">
-      <div class="carousel-item active" *ngFor="let banner of banners?.data">
-        <img class="w-100" [src]="banner.attributes.banner.data.attributes.url" alt="Image">
+      <div class="carousel-item" *ngFor="let banner of banners?.data; let i = index;"
+        [class.active]="i === activeBanner">
+        <img class="w-100" [src]="banner.attributes.banner.data.attributes.url | imageSource" alt="Image">
         <div class="carousel-caption">
           <div class="container">
             <div class="row justify-content-start">
@@ -20,11 +21,13 @@
       </div>
 
     </div>
-    <button class="carousel-control-prev" type="button" data-bs-target="#header-carousel" data-bs-slide="prev">
+    <button class="carousel-control-prev" type="button" data-bs-target="#header-carousel" data-bs-slide="prev"
+      (click)="setActiveBanner(-1)">
       <span class="carousel-control-prev-icon" aria-hidden="true"></span>
       <span class="visually-hidden">Previous</span>
     </button>
-    <button class="carousel-control-next" type="button" data-bs-target="#header-carousel" data-bs-slide="next">
+    <button class="carousel-control-next" type="button" data-bs-target="#header-carousel" data-bs-slide="next"
+      (click)="setActiveBanner(1)">
       <span class="carousel-control-next-icon" aria-hidden="true"></span>
       <span class="visually-hidden">Next</span>
     </button>

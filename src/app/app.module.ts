@@ -26,7 +26,7 @@ import { ServicesHomeComponent } from './home/services-home/services-home.compon
 import { ProjectComponent } from './home/project/project.component';
 import { QouteComponent } from './home/qoute/qoute.component';
 import { TeamComponent } from './home/team/team.component';
-import { TestimoniesComponent } from './home/testimonies/testimonies.component';
+import { ImageSourcePipe } from './shared/pipes/image-source.pipe';
 
 @NgModule({
   declarations: [
@@ -48,8 +48,7 @@ import { TestimoniesComponent } from './home/testimonies/testimonies.component';
     ServicesHomeComponent,
     ProjectComponent,
     QouteComponent,
-    TeamComponent,
-    TestimoniesComponent
+    TeamComponent
   ],
   imports: [
     BrowserModule,
@@ -58,7 +57,8 @@ import { TestimoniesComponent } from './home/testimonies/testimonies.component';
     HeaderComponent,
     NavbarComponent,
     CopyrightComponent,
-    FooterComponent
+    FooterComponent,
+    ImageSourcePipe
   ],
   providers: [],
   bootstrap: [AppComponent]
