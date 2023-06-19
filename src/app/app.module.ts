@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -27,6 +29,7 @@ import { ProjectComponent } from './home/project/project.component';
 import { QouteComponent } from './home/qoute/qoute.component';
 import { TeamComponent } from './home/team/team.component';
 import { ImageSourcePipe } from './shared/pipes/image-source.pipe';
+import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -58,9 +61,14 @@ import { ImageSourcePipe } from './shared/pipes/image-source.pipe';
     NavbarComponent,
     CopyrightComponent,
     FooterComponent,
-    ImageSourcePipe
+    ImageSourcePipe,
+    FormsModule,
+    ReactiveFormsModule
   ],
-  providers: [],
+  providers: [{
+    provide: LocationStrategy,
+    useClass: HashLocationStrategy
+  }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
