@@ -12,20 +12,15 @@
       <div class="col-lg-6 pt-lg-5 wow fadeIn" data-wow-delay="0.5s">
         <div class="bg-white rounded-top p-5 mt-lg-5">
           <p class="fs-5 fw-medium text-primary">About Us</p>
-          <h1 class="display-6 mb-4">The Best Marketing Agency to Improve Your Business</h1>
-          <p class="mb-4">Tempor erat elitr rebum at clita. Diam dolor diam ipsum sit. Aliqu diam amet
-            diam et eos. Clita erat ipsum et lorem et sit, sed stet lorem sit clita duo justo</p>
+          <h1 class="display-6 mb-4">{{about?.data?.attributes?.title}}</h1>
+          <p class="mb-4">{{about?.data?.attributes?.description}}</p>
           <div class="row g-5 pt-2 mb-5">
-            <div class="col-sm-6">
-              <img class="img-fluid mb-4" src="img/icon/icon-5.png" alt="">
-              <h5 class="mb-3">Managed Services</h5>
-              <span>Clita erat ipsum et lorem et sit sed stet lorem</span>
+            <div class="col-sm-6" *ngFor="let item of about?.data?.attributes?.cards">
+              <img class="img-fluid mb-4" [src]="item.image.data.attributes.url |imageSource" alt="">
+              <h5 class="mb-3">{{item.title}}</h5>
+              <span>{{item.description}}</span>
             </div>
-            <div class="col-sm-6">
-              <img class="img-fluid mb-4" src="img/icon/icon-2.png" alt="">
-              <h5 class="mb-3">Dedicated Experts</h5>
-              <span>Clita erat ipsum et lorem et sit sed stet lorem</span>
-            </div>
+
           </div>
           <a class="btn btn-primary rounded-pill py-3 px-5" href="">Explore More</a>
         </div>
