@@ -30,6 +30,7 @@ import { QouteComponent } from './home/qoute/qoute.component';
 import { TeamComponent } from './home/team/team.component';
 import { ImageSourcePipe } from './shared/pipes/image-source.pipe';
 import { HashLocationStrategy, LocationStrategy } from '@angular/common';
+import { TestimonialHomeComponent } from './home/testimonial-home/testimonial-home.component';
 
 @NgModule({
   declarations: [
@@ -51,7 +52,8 @@ import { HashLocationStrategy, LocationStrategy } from '@angular/common';
     ServicesHomeComponent,
     ProjectComponent,
     QouteComponent,
-    TeamComponent
+    TeamComponent,
+    TestimonialHomeComponent
   ],
   imports: [
     BrowserModule,
