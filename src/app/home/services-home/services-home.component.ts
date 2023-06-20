@@ -15,7 +15,11 @@ export class ServicesHomeComponent implements OnInit {
   }
 
   getServices() {
-    this.http.get<ServiceResponse>('http://localhost:1337/api/service?populate=services.image').subscribe(response => {
+    this.http.get<ServiceResponse>('http://localhost:1337/api/service', {
+      params: {
+        populate: 'services.image'
+      }
+    }).subscribe(response => {
       console.log(response);
       this.service = response
 

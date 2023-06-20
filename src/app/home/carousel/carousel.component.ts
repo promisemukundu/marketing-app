@@ -17,7 +17,11 @@ export class CarouselComponent implements OnInit {
 
   getBanner() {
     this.http
-      .get<BannerResponse>('http://localhost:1337/api/hero-banners?populate=banner')
+      .get<BannerResponse>('http://localhost:1337/api/hero-banners', {
+        params: {
+          populate: 'banner'
+        }
+      })
       .subscribe((response) => {
         console.log(response);
         this.banners = response

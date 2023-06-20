@@ -13,7 +13,11 @@ export class AboutHomeComponent implements OnInit {
   constructor(private http: HttpClient) { }
 
   getAbout() {
-    this.http.get<AboutResponse>('http://localhost:1337/api/about-us?populate=cards.image').subscribe(response => {
+    this.http.get<AboutResponse>('http://localhost:1337/api/about-us', {
+      params: {
+        populate: 'cards.image'
+      }
+    }).subscribe(response => {
       console.log(response);
       this.about = response
 

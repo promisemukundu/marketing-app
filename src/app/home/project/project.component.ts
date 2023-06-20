@@ -13,7 +13,11 @@ export class ProjectComponent implements OnInit {
   constructor(private http: HttpClient) { }
 
   getProject() {
-    this.http.get<ProjectResponse>('http://localhost:1337/api/projects?populate=projects.image').subscribe(response => {
+    this.http.get<ProjectResponse>('http://localhost:1337/api/projects', {
+      params: {
+        populate: 'projects.image'
+      }
+    }).subscribe(response => {
       console.log(response);
       this.projects = response
     })

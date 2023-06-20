@@ -14,7 +14,11 @@ export class TeamComponent implements OnInit {
   constructor(private http: HttpClient) { }
 
   getTeams() {
-    this.http.get<TeamsResponse>('http://localhost:1337/api/team?populate=members.image').subscribe(response => {
+    this.http.get<TeamsResponse>('http://localhost:1337/api/team', {
+      params: {
+        populate: 'members.image'
+      }
+    }).subscribe(response => {
       console.log(response);
       this.teams = response
 
