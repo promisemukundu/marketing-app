@@ -1,35 +1,42 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { BannerResponse } from 'src/app/shared/models/banner-response';
+import { CompanyDetails } from 'src/app/shared/models/company-details';
+import { forkJoin } from 'rxjs';
 
 @Component({
   selector: 'app-carousel',
   templateUrl: './carousel.component.html',
-  styleUrls: ['./carousel.component.scss']
+  styleUrls: ['./carousel.component.scss'],
 })
 export class CarouselComponent implements OnInit {
-
   banners?: BannerResponse;
+  details?: CompanyDetails
   activeBanner = 0;
 
   constructor(private http: HttpClient) { }
 
+  getBannerDetails() {
+    const companyDetails$ = this.http.get<CompanyDetails>('http://localhost:1337/api/company-detail');
 
-  getBanner() {
-    this.http
-      .get<BannerResponse>('http://localhost:1337/api/hero-banners', {
+    const banners$ = this.http.get<BannerResponse>(
+      'http://localhost:1337/api/hero-banners',
+      {
         params: {
-          populate: 'banner'
-        }
-      })
-      .subscribe((response) => {
-        console.log(response);
-        this.banners = response
-      });
+          populate: 'banner',
+        },
+      }
+    );
+
+    forkJoin([companyDetails$, banners$]).subscribe(([businessHours, banners]) => {
+      console.log(companyDetails$, banners$);
+      this.details = businessHours
+      this.banners = banners
+    })
   }
 
   ngOnInit(): void {
-    this.getBanner();
+    this.getBannerDetails()
   }
 
   public setActiveBanner(direction: number): void {
