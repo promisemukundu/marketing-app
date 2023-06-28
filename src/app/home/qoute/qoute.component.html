@@ -18,12 +18,12 @@
           <span class="btn-lg-square bg-primary" style="width: 55px; height: 55px">
             <i class="fa fa-phone-alt text-white"></i>
           </span>
-          <span class="fs-5 fw-medium mx-4">+012 345 6789</span>
+          <span class="fs-5 fw-medium mx-4">{{details?.data?.attributes?.cellNumber}}</span>
         </a>
       </div>
       <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.5s">
         <h2 class="mb-4">Get A Free Quote</h2>
-        <div class="row g-3" [formGroup]="submitForm" (ngSubmit)="onSubmit()">
+        <div class="row g-3" [formGroup]="submitForm">
           <div class="col-sm-6">
             <div class="form-floating">
               <input type="text" class="form-control" formControlName="name" id="name" placeholder="Your Name" />
@@ -44,11 +44,11 @@
           </div>
           <div class="col-sm-6">
             <div class="form-floating">
-              <select class="form-select" id="service">
+              <select class="form-select" id="service" formControlName="service">
                 <option selected>Digital Marketing</option>
-                <option value="">Social Marketing</option>
-                <option value="">Content Marketing</option>
-                <option value="">E-mail Marketing</option>
+                <option>Social Marketing</option>
+                <option>Content Marketing</option>
+                <option>E-mail Marketing</option>
               </select>
               <label for="service">Choose A Service</label>
             </div>
@@ -61,7 +61,7 @@
             </div>
           </div>
           <div class="col-12 text-center">
-            <button class="btn btn-primary w-100 py-3" type="submit">
+            <button class="btn btn-primary w-100 py-3" type="submit" (click)="onSubmit()">
               Submit Now
             </button>
           </div>
