@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { ServiceResponse } from 'src/app/shared/models/services-response';
+import { finalize } from 'rxjs';
 
 @Component({
   selector: 'app-services-home',
@@ -10,6 +11,8 @@ import { ServiceResponse } from 'src/app/shared/models/services-response';
 export class ServicesHomeComponent implements OnInit {
 
   service?: ServiceResponse
+  isLoading: boolean = true
+  errorMessage?: string
   constructor(private http: HttpClient) {
 
   }
@@ -19,11 +22,13 @@ export class ServicesHomeComponent implements OnInit {
       params: {
         populate: 'services.image'
       }
-    }).subscribe(response => {
-      console.log(response);
-      this.service = response
-
     })
+      .pipe(finalize(() => this.isLoading = false))
+      .subscribe(response => {
+        console.log(response);
+        this.service = response
+
+      })
   }
 
   ngOnInit(): void {

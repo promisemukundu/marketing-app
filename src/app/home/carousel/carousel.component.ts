@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { BannerResponse } from 'src/app/shared/models/banner-response';
 import { CompanyDetails } from 'src/app/shared/models/company-details';
-import { forkJoin } from 'rxjs';
+import { forkJoin, finalize } from 'rxjs';
 
 @Component({
   selector: 'app-carousel',
@@ -12,6 +12,8 @@ import { forkJoin } from 'rxjs';
 export class CarouselComponent implements OnInit {
   banners?: BannerResponse;
   details?: CompanyDetails
+  errorMessage?: string
+  isLoading = true;
   activeBanner = 0;
 
   constructor(private http: HttpClient) { }
@@ -26,7 +28,8 @@ export class CarouselComponent implements OnInit {
           populate: 'banner',
         },
       }
-    );
+    )
+      .pipe(finalize(() => this.isLoading = false))
 
     forkJoin([companyDetails$, banners$]).subscribe(([businessHours, banners]) => {
       console.log(companyDetails$, banners$);

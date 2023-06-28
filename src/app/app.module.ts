@@ -31,6 +31,7 @@ import { TeamComponent } from './home/team/team.component';
 import { ImageSourcePipe } from './shared/pipes/image-source.pipe';
 import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 import { TestimonialHomeComponent } from './home/testimonial-home/testimonial-home.component';
+import { LoaderComponent } from './shared/loader/loader.component';
 
 @NgModule({
   declarations: [
@@ -65,7 +66,9 @@ import { TestimonialHomeComponent } from './home/testimonial-home/testimonial-ho
     FooterComponent,
     ImageSourcePipe,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    LoaderComponent
+
   ],
   providers: [
   ],

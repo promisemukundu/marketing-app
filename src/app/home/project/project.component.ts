@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { ProjectResponse } from 'src/app/shared/models/project-response';
+import { finalize } from 'rxjs';
 
 @Component({
   selector: 'app-project',
@@ -10,6 +11,8 @@ import { ProjectResponse } from 'src/app/shared/models/project-response';
 export class ProjectComponent implements OnInit {
 
   projects?: ProjectResponse
+  isLoading: boolean = true
+  errorMessage?: string
   constructor(private http: HttpClient) { }
 
   getProject() {
@@ -17,10 +20,12 @@ export class ProjectComponent implements OnInit {
       params: {
         populate: 'projects.image'
       }
-    }).subscribe(response => {
-      console.log(response);
-      this.projects = response
     })
+      .pipe(finalize(() => this.isLoading = false))
+      .subscribe(response => {
+        console.log(response);
+        this.projects = response
+      })
   }
 
   ngOnInit(): void {
